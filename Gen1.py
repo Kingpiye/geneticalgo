@@ -11,6 +11,7 @@ def fitness(idealnumber, genstring1):
     currentfit = fit
     return currentfit
 
+
 while currentfit>0:
     genstring1 = random.randrange(0,100000)
     print(genstring1)
