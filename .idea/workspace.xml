@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b0aacee-ff4d-48a7-9253-0132113fa510" name="Changes" comment="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
+      <change beforePath="$PROJECT_DIR$/.idea/GeneticAlgorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GeneticAlgorithm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gen1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gen1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,9 +25,80 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Kingpiye"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Kingpiye/geneticalgo.git",
+    "accountId": "43eb9801-38bf-4d78-8392-73f9134e4e2f"
+  }
+}]]></component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.000000120751687" />
+      <entry key="S5" value="1.0017364589935254" />
+      <entry key="S10" value="1.0469951217971716" />
+      <entry key="S30" value="1.6673445625746055" />
+      <entry key="S60" value="2.7432725227055403" />
+      <entry key="M2" value="4.748341101947068" />
+      <entry key="M5" value="11.947110560333794" />
+      <entry key="M10" value="24.495566689648115" />
+      <entry key="M15" value="34.62678304661318" />
+      <entry key="M30" value="53.98433467175493" />
+      <entry key="H1" value="71.43430016713293" />
+      <entry key="H2" value="83.8465170223805" />
+      <entry key="H4" value="91.3742794620291" />
+      <entry key="D1" value="98.47791660536359" />
+      <entry key="W1" value="99.78037360625378" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="3.316029025090209E-91" />
+      <entry key="S5" value="6.430538301351953E-37" />
+      <entry key="S10" value="8.019063724246082E-19" />
+      <entry key="S30" value="9.290545648571527E-7" />
+      <entry key="S60" value="9.638747661689011E-4" />
+      <entry key="M2" value="0.031046332606421718" />
+      <entry key="M5" value="0.24944558987116847" />
+      <entry key="M10" value="0.5133807443889418" />
+      <entry key="M15" value="0.7027063973222211" />
+      <entry key="M30" value="1.1761979014412154" />
+      <entry key="H1" value="1.7657242825763844" />
+      <entry key="H2" value="2.266656175467323" />
+      <entry key="H4" value="2.5980593421079137" />
+      <entry key="D1" value="2.9274725245419755" />
+      <entry key="W1" value="2.9894941148974383" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="2.170026077066823E-4" />
+      <entry key="MS500" value="0.18505166225000613" />
+      <entry key="S2" value="0.6558783577275434" />
+      <entry key="S5" value="0.846224990625717" />
+      <entry key="S10" value="0.9624038268001488" />
+      <entry key="S30" value="1.6136459358250335" />
+      <entry key="S60" value="2.6843988900130027" />
+      <entry key="M2" value="4.71159277142721" />
+      <entry key="M5" value="12.12362414772324" />
+      <entry key="M10" value="24.94793586012851" />
+      <entry key="M15" value="35.27856159702243" />
+      <entry key="M30" value="55.12616580452147" />
+      <entry key="H1" value="73.17889117607896" />
+      <entry key="H2" value="86.10118560234882" />
+      <entry key="H4" value="93.96590990584245" />
+      <entry key="D1" value="101.40424873368049" />
+      <entry key="W1" value="102.7697029953195" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="39T5KZza0N8S2fKtJDqwT3wEMIH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,13 +110,16 @@
     "Python.Gen1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master"
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-348a24fa61fa-5312c7369657-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.23774.444" />
+        <option value="bundled-python-sdk-ebb3072d7bdf-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.11879.98" />
       </set>
     </attachedChunks>
   </component>
@@ -80,6 +157,9 @@
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -3,4 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.12 (GeneticAlgorithm)" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="~\PycharmProjects\geneticalgo\.venv" project-jdk-type="Python SDK" />
 </project>
