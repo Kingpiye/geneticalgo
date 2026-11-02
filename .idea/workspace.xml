@@ -37,61 +37,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.000000000223346" />
-      <entry key="MS500" value="1.0117434490473871" />
-      <entry key="S2" value="1.3291917305329388" />
-      <entry key="S5" value="1.6412559609748216" />
-      <entry key="S10" value="1.8131103160813802" />
-      <entry key="S30" value="2.2957632676740323" />
-      <entry key="S60" value="2.8226065971006067" />
-      <entry key="M2" value="3.336058648809268" />
-      <entry key="M5" value="4.105703965256159" />
-      <entry key="M10" value="6.506981169008735" />
-      <entry key="M15" value="10.12197693350105" />
-      <entry key="M30" value="22.921287957775576" />
-      <entry key="H1" value="49.98713958793418" />
-      <entry key="H2" value="87.27973741690619" />
-      <entry key="H4" value="120.75356212843188" />
-      <entry key="D1" value="161.83970281214383" />
-      <entry key="W1" value="170.50255287288275" />
+      <entry key="MS100" value="1.000000000000152" />
+      <entry key="MS500" value="1.002732434938027" />
+      <entry key="S2" value="1.2583054685569377" />
+      <entry key="S5" value="1.8568036317890053" />
+      <entry key="S10" value="2.7502208353412434" />
+      <entry key="S30" value="5.038301432615156" />
+      <entry key="S60" value="6.742703984076021" />
+      <entry key="M2" value="9.733022274011608" />
+      <entry key="M5" value="19.36379207975911" />
+      <entry key="M10" value="33.57638434074694" />
+      <entry key="M15" value="44.262409782440685" />
+      <entry key="M30" value="66.60582182946102" />
+      <entry key="H1" value="99.57079308551637" />
+      <entry key="H2" value="143.64215559213434" />
+      <entry key="H4" value="185.2766072283336" />
+      <entry key="D1" value="239.2147406949363" />
+      <entry key="W1" value="250.95773445357128" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="3.4935510412048265E-192" />
-      <entry key="S30" value="1.517361396556898E-64" />
-      <entry key="S60" value="1.2318122407915077E-32" />
-      <entry key="M2" value="1.109872044422266E-16" />
-      <entry key="M5" value="4.170061444278983E-7" />
-      <entry key="M10" value="6.896180833526591E-4" />
-      <entry key="M15" value="0.008853549284670793" />
-      <entry key="M30" value="0.138757987796288" />
-      <entry key="H1" value="0.6665397414833698" />
-      <entry key="H2" value="1.5834161323877511" />
-      <entry key="H4" value="2.4972247393216342" />
-      <entry key="D1" value="3.6939913491733516" />
-      <entry key="W1" value="3.954676903986918" />
+      <entry key="MS100" value="1.4531487167669983E-67" />
+      <entry key="MS500" value="4.2900466283997446E-14" />
+      <entry key="S2" value="4.5510908295616113E-4" />
+      <entry key="S5" value="0.04605175666999042" />
+      <entry key="S10" value="0.21459673036421542" />
+      <entry key="S30" value="0.5990326007707827" />
+      <entry key="S60" value="0.7962010497455386" />
+      <entry key="M2" value="1.0827930561310362" />
+      <entry key="M5" value="1.8399462295478934" />
+      <entry key="M10" value="2.731629237909982" />
+      <entry key="M15" value="3.3378119695173525" />
+      <entry key="M30" value="4.368290495967032" />
+      <entry key="H1" value="5.459530765989114" />
+      <entry key="H2" value="6.746100078073083" />
+      <entry key="H4" value="7.962826558450183" />
+      <entry key="D1" value="9.579220226188326" />
+      <entry key="W1" value="9.937470651614548" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.034434534890479" />
-      <entry key="MS500" value="0.5169977804537725" />
-      <entry key="S2" value="1.1362707150116138" />
-      <entry key="S5" value="1.5454785575562144" />
-      <entry key="S10" value="1.7605090895883873" />
-      <entry key="S30" value="2.2758533037198205" />
-      <entry key="S60" value="2.811637607780969" />
-      <entry key="M2" value="3.329681996770246" />
-      <entry key="M5" value="4.101632718884421" />
-      <entry key="M10" value="6.502831989276988" />
-      <entry key="M15" value="10.124777070766578" />
-      <entry key="M30" value="23.051286925462723" />
-      <entry key="H1" value="50.64240973126729" />
-      <entry key="H2" value="88.85261624012742" />
-      <entry key="H4" value="123.24330763264756" />
-      <entry key="D1" value="165.53199554993535" />
-      <entry key="W1" value="174.4569735125899" />
+      <entry key="MS100" value="1.5364922333698424E-5" />
+      <entry key="MS500" value="0.10955628695521104" />
+      <entry key="S2" value="0.7508437139435029" />
+      <entry key="S5" value="1.5601411355272619" />
+      <entry key="S10" value="2.66980050569184" />
+      <entry key="S30" value="5.4364783448967415" />
+      <entry key="S60" value="7.390431892477465" />
+      <entry key="M2" value="10.68195660900657" />
+      <entry key="M5" value="21.086916448451422" />
+      <entry key="M10" value="36.21554968902791" />
+      <entry key="M15" value="47.524385992075345" />
+      <entry key="M30" value="70.92352349612035" />
+      <entry key="H1" value="104.99641740496467" />
+      <entry key="H2" value="150.36554704910404" />
+      <entry key="H4" value="193.22535110796917" />
+      <entry key="D1" value="248.79102405114295" />
+      <entry key="W1" value="260.8947672082776" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -102,19 +102,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.Gen1.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.Gen1.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -130,7 +131,8 @@
       <option name="presentableId" value="Default" />
       <updated>1770707156834</updated>
       <workItem from="1793536699627" duration="4223000" />
-      <workItem from="1793542584706" duration="3686000" />
+      <workItem from="1793542584706" duration="3697000" />
+      <workItem from="1793611304315" duration="3839000" />
     </task>
     <task id="LOCAL-00001" summary="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
       <option name="closed" value="true" />
@@ -164,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793476877638</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
+      <option name="closed" value="true" />
+      <created>1793548164026</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1793548164026</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +196,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/geneticalgo$Gen1.coverage" NAME="Gen1 Coverage Results" MODIFIED="1793545592968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$Gen1.coverage" NAME="Gen1 Coverage Results" MODIFIED="1793614110661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

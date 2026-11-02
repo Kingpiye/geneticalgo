@@ -26,6 +26,7 @@ N_ROW = 100
 
 mutProb = 0.5
 indpb = 0.1
+transProb = 0
 
 bestFitnessValues = []
 meanFitnessValues = []
@@ -44,7 +45,7 @@ creator.create(
 toolbox = base.Toolbox()
 
 toolbox.register("zeroOrOne", random.randint, 0, 1)
-
+toolbox.register("transduction", tools.cxTwoPoint)
 toolbox.register(
     "individual",
     tools.initRepeat,
@@ -61,7 +62,7 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("evaluate", lambda individual: (
     abs(temp_env - sum(individual)) / 1000,
 ))
-
+start_time = time.time()
 
 pop = toolbox.population()
 
@@ -73,10 +74,7 @@ def evaluate(individual):
 
 toolbox.unregister("evaluate")
 toolbox.register("evaluate", evaluate)
-
-
 def get_neighbors(grid, row, col):
-
     neighbors = []
 
     for dr in [-1, 0, 1]:
@@ -88,59 +86,57 @@ def get_neighbors(grid, row, col):
             r = row + dr
             c = col + dc
 
-            if 0 <= r < N_ROW and 0 <= c < N_COL:
+            if 0 <= r < len(grid) and 0 <= c < len(grid[0]):
                 neighbors.append(grid[r][c])
 
     return neighbors
 
 
-for row in pop:
-    for bacterium in row:
-        bacterium.fitness.values = toolbox.evaluate(bacterium)
-
-# --------------------------------
-# 7. EVOLUTION
-# --------------------------------
-start_time = time.time()
 
 for g in range(NGEN):
 
-    # Create a copy of the old grid
+    # Create an empty grid for the next generation
     new_grid = [
-        [toolbox.clone(bacterium) for bacterium in row]
-        for row in pop
+        [None for c in range(N_COL)]
+        for r in range(N_ROW)
     ]
 
-    for row in range(N_ROW):
-        for col in range(N_COL):
+    # Go through every position
+    for r in range(N_ROW):
+        for c in range(N_COL):
 
-            current = pop[row][col]
+            # Find local neighbors
+            neighbors = get_neighbors(pop, r, c)
 
-            # Get local neighbors
-            neighbors = get_neighbors(pop, row, col)
+            # Get current bacterium
+            current = pop[r][c]
 
-            # Current bacterium + neighbors
-            candidates = neighbors + [current]
+            # Combine current bacterium and neighbors
+            selList = [current] + neighbors
 
-            # Local tournament selection
-            parent = toolbox.select(candidates, 1)[0]
+            # Select one parent
+            parent = toolbox.select(selList, 1)[0]
 
-            # Clone selected parent
+            # Clone the selected parent
             child = toolbox.clone(parent)
 
-            # Mutation
+            #Transduction
+            if random.random() < transProb:
+                donor = random.choice(neighbors)
+                toolbox.transduction(child, donor)
+            # Apply mutation
             if random.random() < mutProb:
                 toolbox.mutate(child)
                 del child.fitness.values
 
-            # Evaluate if necessary
+            # Evaluate if fitness is invalid
             if not child.fitness.valid:
                 child.fitness.values = toolbox.evaluate(child)
 
-            # Keep original position
-            new_grid[row][col] = child
+            # Place child at the same position
+            new_grid[r][c] = child
 
-    # Replace old grid
+    # Replace old population
     pop = new_grid
 
     # --------------------------------
