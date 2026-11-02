@@ -14,38 +14,64 @@ from deap import base, creator, tools
 temp_env = 40
 ph_Env = 7
 optimal_nutrition_efficiency = 1
+salt_concentration = 0.5
 
-NGEN = 50
+NGEN = 10000
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 
-chromosome_length = 100
+chromosome_length = 400
 
 N_COL = 100
 N_ROW = 100
 
 mutProb = 0.5
-indpb = 0.1
-transProb = 0
+indpb = 0.01
+transProb = 0.01
 
-bestFitnessValues = []
-meanFitnessValues = []
+bestTempFitness = []
+meanTempFitness = []
+
+bestPhFitness = []
+meanPhFitness = []
+
+bestNutFitness = []
+meanNutFitness = []
+
+bestSaltFitness = []
+meanSaltFitness = []
 
 
 
-creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0, -1.0, -1.0 ))
 
 
 creator.create(
         "Individual",
         list,
-        fitness=creator.FitnessMin
+        fitness=creator.FitnessMulti
     )
 
 toolbox = base.Toolbox()
+def transduction(recipient, donor):
 
+    chromosome_length = len(recipient)
+
+    # Zufällige Startposition
+    start = random.randint(0, chromosome_length - 1)
+
+    # Zufällige Länge des übertragenen Abschnitts
+    segment_length = random.randint(1, 20)
+
+    # Ende des Abschnitts bestimmen
+    end = min(start + segment_length, chromosome_length)
+
+    # Genabschnitt übertragen
+    recipient[start:end] = donor[start:end]
+
+    return recipient
 toolbox.register("zeroOrOne", random.randint, 0, 1)
-toolbox.register("transduction", tools.cxTwoPoint)
+toolbox.register("transduction", transduction)
 toolbox.register(
     "individual",
     tools.initRepeat,
@@ -68,8 +94,26 @@ pop = toolbox.population()
 
 
 def evaluate(individual):
-    temp_fitness = abs(temp_env - sum(individual)) / 1000
-    return (temp_fitness,)
+        temp_fitness = abs(
+            temp_env - sum(individual[0:100])
+        ) / 100
+
+        ph_fitness = abs(
+            ph_Env - sum(individual[100:200]) / 100 * 14
+        )
+
+        nut_fitness = abs(
+            sum(individual[200:300]) / 100
+            - optimal_nutrition_efficiency
+        )
+
+        salt_fitness = abs(
+            sum(individual[300:400]) / 100
+            - salt_concentration
+        )
+
+        return temp_fitness, ph_fitness, nut_fitness, salt_fitness
+
 
 
 toolbox.unregister("evaluate")
@@ -94,7 +138,7 @@ def get_neighbors(grid, row, col):
 
 
 for g in range(NGEN):
-
+    print(f"Generation: {g}")
     # Create an empty grid for the next generation
     new_grid = [
         [None for c in range(N_COL)]
@@ -121,9 +165,13 @@ for g in range(NGEN):
             child = toolbox.clone(parent)
 
             #Transduction
+            # Transduction
             if random.random() < transProb:
                 donor = random.choice(neighbors)
+
                 toolbox.transduction(child, donor)
+
+                del child.fitness.values
             # Apply mutation
             if random.random() < mutProb:
                 toolbox.mutate(child)
@@ -140,27 +188,29 @@ for g in range(NGEN):
     pop = new_grid
 
     # --------------------------------
-    # 8. STATISTICS
+    # STATISTICS
     # --------------------------------
 
     fitnessValues = [
-        bacterium.fitness.values[0]
-        for row in pop
-        for bacterium in row
+        [bacterium.fitness.values[i] for row in pop for bacterium in row]
+        for i in range(4)
     ]
 
-    minFitness = min(fitnessValues)
-    meanFitness = sum(fitnessValues) / len(fitnessValues)
+    # Temperatur
+    bestTempFitness.append(min(fitnessValues[0]))
+    meanTempFitness.append(sum(fitnessValues[0]) / len(fitnessValues[0]))
 
-    bestFitnessValues.append(minFitness)
-    meanFitnessValues.append(meanFitness)
+    # pH-Wert
+    bestPhFitness.append(min(fitnessValues[1]))
+    meanPhFitness.append(sum(fitnessValues[1]) / len(fitnessValues[1]))
 
-    print(
-        f"Generation {g + 1}: "
-        f"Best Fitness = {minFitness:.4f}, "
-        f"Average Fitness = {meanFitness:.4f}"
-    )
+    # Nährstoffeffizienz
+    bestNutFitness.append(min(fitnessValues[2]))
+    meanNutFitness.append(sum(fitnessValues[2]) / len(fitnessValues[2]))
 
+    # Salzkonzentration
+    bestSaltFitness.append(min(fitnessValues[3]))
+    meanSaltFitness.append(sum(fitnessValues[3]) / len(fitnessValues[3]))
 end_time = time.time()
 
 calculation_time = end_time - start_time
@@ -168,12 +218,33 @@ calculation_time = end_time - start_time
 print(f"Calculation time: {calculation_time:.4f} seconds")
 sns.set_style("whitegrid")
 
-plt.plot(bestFitnessValues, color="red", label="Best Fitness")
-plt.plot(meanFitnessValues, color="green", label="Average Fitness")
+fig, axes = plt.subplots(2, 2, figsize=(12, 8))
 
-plt.xlabel("Generation")
-plt.ylabel("Fitness")
-plt.title("Local Evolution - Best and Average Fitness")
+# Temperatur
+axes[0, 0].plot(bestTempFitness, label="Best Fitness")
+axes[0, 0].plot(meanTempFitness, label="Average Fitness")
+axes[0, 0].set_title("Temperature Fitness")
 
-plt.legend()
+# pH-Wert
+axes[0, 1].plot(bestPhFitness, label="Best Fitness")
+axes[0, 1].plot(meanPhFitness, label="Average Fitness")
+axes[0, 1].set_title("pH Fitness")
+
+# Nährstoffe
+axes[1, 0].plot(bestNutFitness, label="Best Fitness")
+axes[1, 0].plot(meanNutFitness, label="Average Fitness")
+axes[1, 0].set_title("Nutrition Fitness")
+
+# Salz
+axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
+axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
+axes[1, 1].set_title("Salt Fitness")
+
+for ax in axes.flat:
+    ax.set_xlabel("Generation")
+    ax.set_ylabel("Fitness")
+    ax.legend()
+    ax.grid(True)
+
+plt.tight_layout()
 plt.show()
