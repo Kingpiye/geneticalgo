@@ -1,6 +1,6 @@
 import random
 import time
-
+import json
 import matplotlib.pyplot as plt
 from deap import base, creator, tools
 
@@ -9,10 +9,24 @@ from deap import base, creator, tools
 # 1. PARAMETERS
 # --------------------------------
 
-temp_env = 40
-ph_Env = 7
-optimal_nutrition_efficiency = 1.0
-salt_concentration = 0.5
+print("Enter Enviroment: Enviroment1/Enviroment2/Enviroment3")
+Enviroment = input()
+if Enviroment == "Enviroment1":
+    with open("enviroment1.json", "r") as f:
+        enviroment = json.load(f)
+elif Enviroment == "Enviroment2":
+    with open("enviroment2.json", "r") as f:
+        enviroment = json.load(f)
+elif Enviroment == "Enviroment3":
+    with open("enviroment3.json", "r") as f:
+        enviroment = json.load(f)
+else:
+    print("No valid Enviroment selected")
+temp_env = enviroment["temperature"]
+ph_Env = enviroment["ph"]
+optimal_nutrition_efficiency = enviroment["nutrition"]
+salt_concentration = enviroment["salt"]
+
 
 NGEN = 1000
 RANDOM_SEED = 42

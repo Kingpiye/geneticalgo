@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b0aacee-ff4d-48a7-9253-0132113fa510" name="Changes" comment="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
-      <change afterPath="$PROJECT_DIR$/gen2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enviroment1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enviroment2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/enviroment3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gen1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gen1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bacterial_evolution_updated.py" beforeDir="false" afterPath="$PROJECT_DIR$/gen2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,61 +41,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000000002" />
-      <entry key="MS500" value="1.0006922282730821" />
-      <entry key="S2" value="1.2919438407046475" />
-      <entry key="S5" value="2.328579876432947" />
-      <entry key="S10" value="3.284866344413864" />
-      <entry key="S30" value="4.312557123631819" />
-      <entry key="S60" value="4.639252528279923" />
-      <entry key="M2" value="4.827068884918745" />
-      <entry key="M5" value="5.903358778009521" />
-      <entry key="M10" value="10.306636767783031" />
-      <entry key="M15" value="16.11934627876542" />
-      <entry key="M30" value="36.3499775778306" />
-      <entry key="H1" value="74.2760258693302" />
-      <entry key="H2" value="128.9080979191955" />
-      <entry key="H4" value="184.57095850583693" />
-      <entry key="D1" value="262.22981924081876" />
-      <entry key="W1" value="279.9004873157666" />
+      <entry key="MS100" value="1.0000000015024875" />
+      <entry key="MS500" value="1.0171934157713458" />
+      <entry key="S2" value="1.3621100191196982" />
+      <entry key="S5" value="1.6660950682828795" />
+      <entry key="S10" value="1.8162546910781554" />
+      <entry key="S30" value="2.1471937364885965" />
+      <entry key="S60" value="3.6841757448670562" />
+      <entry key="M2" value="7.706047289695827" />
+      <entry key="M5" value="19.31249108141071" />
+      <entry key="M10" value="32.70884109811976" />
+      <entry key="M15" value="41.89000880492315" />
+      <entry key="M30" value="63.97716222494722" />
+      <entry key="H1" value="102.97268434722866" />
+      <entry key="H2" value="161.8509263204318" />
+      <entry key="H4" value="225.04106499534066" />
+      <entry key="D1" value="317.5414575783314" />
+      <entry key="W1" value="339.1834175177792" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="3.0473610204829214E-173" />
-      <entry key="S5" value="9.85850743654684E-70" />
-      <entry key="S10" value="3.213090023312177E-35" />
-      <entry key="S30" value="4.161116643972795E-12" />
-      <entry key="S60" value="3.110754202101388E-6" />
-      <entry key="M2" value="0.0031350110190346333" />
-      <entry key="M5" value="0.22105281816613745" />
-      <entry key="M10" value="0.9785641686301738" />
-      <entry key="M15" value="1.731792051292126" />
-      <entry key="M30" value="3.576583727274794" />
-      <entry key="H1" value="5.897630886390079" />
-      <entry key="H2" value="8.339848455638656" />
-      <entry key="H4" value="10.4794397810908" />
-      <entry key="D1" value="13.2707225880049" />
-      <entry key="W1" value="13.891457185909378" />
+      <entry key="S2" value="1.2989866766672695E-135" />
+      <entry key="S5" value="1.9006657385403362E-54" />
+      <entry key="S10" value="2.4022140911506354E-27" />
+      <entry key="S30" value="3.4946360700823044E-9" />
+      <entry key="S60" value="1.3701599895439337E-4" />
+      <entry key="M2" value="0.02820860647782143" />
+      <entry key="M5" value="0.7018937400120732" />
+      <entry key="M10" value="2.1339344047317264" />
+      <entry key="M15" value="3.271799022698598" />
+      <entry key="M30" value="5.781142493080609" />
+      <entry key="H1" value="8.94585950343965" />
+      <entry key="H2" value="12.293943301759125" />
+      <entry key="H4" value="15.205487862189798" />
+      <entry key="D1" value="19.003571258750483" />
+      <entry key="W1" value="19.8515438467463" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.5533950368357204E-8" />
-      <entry key="MS500" value="0.027920338451920015" />
-      <entry key="S2" value="0.6301692550881858" />
-      <entry key="S5" value="1.8168075676226123" />
-      <entry key="S10" value="2.9034821268700757" />
-      <entry key="S30" value="4.135588091639089" />
-      <entry key="S60" value="4.542374817256435" />
-      <entry key="M2" value="4.779362353003191" />
-      <entry key="M5" value="6.099771371323556" />
-      <entry key="M10" value="11.26384652846031" />
-      <entry key="M15" value="17.828487009281464" />
-      <entry key="M30" value="39.900882870847404" />
-      <entry key="H1" value="80.14867802467485" />
-      <entry key="H2" value="137.22743336578273" />
-      <entry key="H4" value="195.03621667542356" />
-      <entry key="D1" value="275.49728470581255" />
-      <entry key="W1" value="293.7914504187852" />
+      <entry key="MS100" value="3.30677618301102E-8" />
+      <entry key="MS500" value="0.03361874947779517" />
+      <entry key="S2" value="0.62605492824908" />
+      <entry key="S5" value="1.2374541825825909" />
+      <entry key="S10" value="1.5691176007096939" />
+      <entry key="S30" value="2.055903836849997" />
+      <entry key="S60" value="3.634193321783465" />
+      <entry key="M2" value="7.697187282676085" />
+      <entry key="M5" value="19.974759446715122" />
+      <entry key="M10" value="34.80534844923611" />
+      <entry key="M15" value="45.12756314462295" />
+      <entry key="M30" value="69.72792204586672" />
+      <entry key="H1" value="111.89112821213084" />
+      <entry key="H2" value="174.12238049756508" />
+      <entry key="H4" value="240.23077280514013" />
+      <entry key="D1" value="336.54131821388205" />
+      <entry key="W1" value="359.0343955451263" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -106,6 +110,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.Gen1.executor": "Run",
+    "Python.bacterial_evolution_updated.executor": "Run",
     "Python.gen2.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -114,6 +119,8 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/PC/PycharmProjects/geneticalgo",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
   }
@@ -122,6 +129,38 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PC\PycharmProjects\geneticalgo" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Gen1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GeneticAlgorithm" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Gen1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Gen1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -140,7 +179,7 @@
       <workItem from="1793536699627" duration="4223000" />
       <workItem from="1793542584706" duration="3697000" />
       <workItem from="1793611304315" duration="7996000" />
-      <workItem from="1793702424815" duration="992000" />
+      <workItem from="1793702424815" duration="3225000" />
     </task>
     <task id="LOCAL-00001" summary="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
       <option name="closed" value="true" />
@@ -198,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793630438210</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
+      <option name="closed" value="true" />
+      <created>1793703698932</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1793703698932</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +267,8 @@
     <option name="LAST_COMMIT_MESSAGE" value="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/geneticalgo$Gen1.coverage" NAME="Gen1 Coverage Results" MODIFIED="1793617231338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geneticalgo$gen2.coverage" NAME="gen2 Coverage Results" MODIFIED="1793703374303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$Gen1.coverage" NAME="Gen1 Coverage Results" MODIFIED="1793705223986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$bacterial_evolution_updated.coverage" NAME="bacterial_evolution_updated Coverage Results" MODIFIED="1793703715407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$gen2.coverage" NAME="gen2 Coverage Results" MODIFIED="1793703582859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
