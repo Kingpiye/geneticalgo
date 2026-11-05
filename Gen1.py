@@ -29,7 +29,6 @@ salt_concentration = enviroment["salt"]
 NGEN = 50
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
-
 chromosome_length = 400
 
 N_COL = 10
@@ -51,11 +50,7 @@ meanNutFitness = []
 bestSaltFitness = []
 meanSaltFitness = []
 
-
-
 creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0, -1.0, -1.0 ))
-
-
 creator.create(
         "Individual",
         list,
@@ -63,6 +58,22 @@ creator.create(
     )
 
 toolbox = base.Toolbox()
+
+toolbox.register("zeroOrOne", random.randint, 0, 1)
+toolbox.register(
+    "individual",
+    tools.initRepeat,
+    creator.Individual,
+    toolbox.zeroOrOne,
+    n=chromosome_length
+)
+
+toolbox.register("row", tools.initRepeat, list, toolbox.individual, n=N_COL)
+toolbox.register("population", tools.initRepeat, list, toolbox.row, n=N_ROW)
+toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
+toolbox.register("select", tools.selTournament, tournsize=3)
+start_time = time.time()
+
 def transduction(recipient, donor):
 
     chromosome_length = len(recipient)
@@ -80,26 +91,8 @@ def transduction(recipient, donor):
     recipient[start:end] = donor[start:end]
 
     return recipient
-toolbox.register("zeroOrOne", random.randint, 0, 1)
+
 toolbox.register("transduction", transduction)
-toolbox.register(
-    "individual",
-    tools.initRepeat,
-    creator.Individual,
-    toolbox.zeroOrOne,
-    n=chromosome_length
-)
-
-toolbox.register("row", tools.initRepeat, list, toolbox.individual, n=N_COL)
-toolbox.register("population", tools.initRepeat, list, toolbox.row, n=N_ROW)
-
-toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
-toolbox.register("select", tools.selTournament, tournsize=3)
-toolbox.register("evaluate", lambda individual: (
-    abs(temp_env - sum(individual)) / 1000,
-))
-start_time = time.time()
-
 pop = toolbox.population()
 
 
@@ -125,8 +118,6 @@ def evaluate(individual):
         return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
 
-
-toolbox.unregister("evaluate")
 toolbox.register("evaluate", evaluate)
 def get_neighbors(grid, row, col):
     neighbors = []
