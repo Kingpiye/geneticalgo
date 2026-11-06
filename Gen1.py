@@ -17,7 +17,7 @@ print("Select Environment (1, 2 or 3):")
 choice = input().strip()
 
 if choice not in environments:
-    raise ValueError("Invalid environment selected!")
+    print("Invalid Environment")
 
 with open(environments[choice], "r") as f:
     enviroment = json.load(f)
@@ -27,12 +27,12 @@ optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 10
+NGEN = 100
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
-popSize = 1000000
+popSize = 1000
 
 mutProb = 0.5
 indpb = 0.01
@@ -79,25 +79,25 @@ pop = toolbox.population()
 
 
 def evaluate(individual):
-        temp_fitness = abs(
-            temp_env - sum(individual[0:100])/ 100
-        )
+    temp_fitness = abs(
+        (temp_env - sum(individual[0:100])) / 100
+    )
 
-        ph_fitness = abs(
-            ph_Env - sum(individual[100:200]) / 100
-        )
+    ph_fitness = abs(
+        (ph_Env - sum(individual[100:200])) / 100
+    )
 
-        nut_fitness = abs(
-            sum(individual[200:300]) / 100
-            - optimal_nutrition_efficiency
-        )
+    nut_fitness = abs(
+        sum(individual[200:300]) / 100
+        - optimal_nutrition_efficiency
+    )
 
-        salt_fitness = abs(
-            sum(individual[300:400]) / 100
-            - salt_concentration
-        )
+    salt_fitness = abs(
+        sum(individual[300:400]) / 100
+        - salt_concentration
+    )
 
-        return temp_fitness, ph_fitness, nut_fitness, salt_fitness
+    return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
 
 toolbox.register("evaluate", evaluate)
