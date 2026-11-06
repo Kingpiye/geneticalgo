@@ -9,7 +9,7 @@ from deap import base, creator, tools
 # 1. PARAMETERS
 # --------------------------------
 
-print("Enter Enviroment: Enviroment1/Enviroment2/Enviroment3")
+print("Enter Environment: Enviroment1/Enviroment2/Enviroment3")
 Enviroment = input()
 if Enviroment == "Enviroment1":
     with open("enviroment1.json", "r") as f:
@@ -21,7 +21,7 @@ elif Enviroment == "Enviroment3":
     with open("enviroment3.json", "r") as f:
         enviroment = json.load(f)
 else:
-    print("No valid Enviroment selected")
+    print("No valid Environment selected")
 temp_env = enviroment["temperature"]
 ph_Env = enviroment["ph"]
 optimal_nutrition_efficiency = enviroment["nutrition"]
@@ -117,7 +117,7 @@ def evaluate(individual):
     ) / 100
 
     ph_fitness = abs(
-        ph_Env - sum(individual[100:200]) / 100 * 14
+        ph_Env - sum(individual[100:200]) / 100
     )
 
     nut_fitness = abs(

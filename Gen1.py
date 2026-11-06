@@ -7,19 +7,19 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from deap import base, creator, tools
-print("Enter Enviroment: Enviroment1/Enviroment2/Enviroment3")
-Enviroment = input()
-if Enviroment == "Enviroment1":
+print("Enter Environment: Enviroment1/Enviroment2/Enviroment3")
+Environment = input()
+if Environment == "Enviroment1":
     with open("enviroment1.json", "r") as f:
         enviroment = json.load(f)
-elif Enviroment == "Enviroment2":
+elif Environment == "Enviroment2":
     with open("enviroment2.json", "r") as f:
         enviroment = json.load(f)
-elif Enviroment == "Enviroment3":
+elif Environment == "Enviroment3":
     with open("enviroment3.json", "r") as f:
         enviroment = json.load(f)
 else:
-    print("No valid Enviroment selected")
+    print("No valid Environment selected")
 temp_env = enviroment["temperature"]
 ph_Env = enviroment["ph"]
 optimal_nutrition_efficiency = enviroment["nutrition"]
@@ -31,12 +31,11 @@ RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
-N_COL = 10
-N_ROW = 10
+popSize = 1000
 
 mutProb = 0.5
 indpb = 0.01
-transProb = 0.01
+cxProb = 0.01
 
 bestTempFitness = []
 meanTempFitness = []
@@ -68,41 +67,23 @@ toolbox.register(
     n=chromosome_length
 )
 
-toolbox.register("row", tools.initRepeat, list, toolbox.individual, n=N_COL)
-toolbox.register("population", tools.initRepeat, list, toolbox.row, n=N_ROW)
+
+toolbox.register("population", tools.initRepeat, list, toolbox.individual, n=popSize)
 toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
+toolbox.register("mate", tools.cxTwoPoint)
 toolbox.register("select", tools.selTournament, tournsize=3)
 start_time = time.time()
 
-def transduction(recipient, donor):
-
-    chromosome_length = len(recipient)
-
-    # Zufällige Startposition
-    start = random.randint(0, chromosome_length - 1)
-
-    # Zufällige Länge des übertragenen Abschnitts
-    segment_length = random.randint(1, 20)
-
-    # Ende des Abschnitts bestimmen
-    end = min(start + segment_length, chromosome_length)
-
-    # Genabschnitt übertragen
-    recipient[start:end] = donor[start:end]
-
-    return recipient
-
-toolbox.register("transduction", transduction)
 pop = toolbox.population()
 
 
 def evaluate(individual):
         temp_fitness = abs(
-            temp_env - sum(individual[0:100])
-        ) / 100
+            temp_env - sum(individual[0:100])/ 100
+        )
 
         ph_fitness = abs(
-            ph_Env - sum(individual[100:200]) / 100 * 14
+            ph_Env - sum(individual[100:200]) / 100
         )
 
         nut_fitness = abs(
@@ -119,83 +100,41 @@ def evaluate(individual):
 
 
 toolbox.register("evaluate", evaluate)
-def get_neighbors(grid, row, col):
-    neighbors = []
-
-    for dr in [-1, 0, 1]:
-        for dc in [-1, 0, 1]:
-
-            if dr == 0 and dc == 0:
-                continue
-
-            r = row + dr
-            c = col + dc
-
-            if 0 <= r < len(grid) and 0 <= c < len(grid[0]):
-                neighbors.append(grid[r][c])
-
-    return neighbors
 
 
+for ind in pop:
+    ind.fitness.values = toolbox.evaluate(ind)
 
 for g in range(NGEN):
     print(f"Generation: {g}")
-    # Create an empty grid for the next generation
-    new_grid = [
-        [None for c in range(N_COL)]
-        for r in range(N_ROW)
-    ]
+    offspring = toolbox.select(pop, len(pop))
+    offspring = list(map(toolbox.clone, offspring))
+    for child1, child2 in zip(offspring[::2], offspring[1::2]):
+        if random.random() < cxProb:
+            toolbox.mate(child1, child2)
+            del child1.fitness.values
+            del child2.fitness.values
 
-    # Go through every position
-    for r in range(N_ROW):
-        for c in range(N_COL):
+    for mutant in offspring:
+        if random.random() < mutProb:
+            toolbox.mutate(mutant)
+            del mutant.fitness.values
 
-            # Find local neighbors
-            neighbors = get_neighbors(pop, r, c)
+    # Evaluate the individuals with an invalid fitness
+    invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
+    fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
+    for ind, fit in zip(invalid_ind, fitnesses):
+        ind.fitness.values = fit
 
-            # Get current bacterium
-            current = pop[r][c]
+    # The population is entirely replaced by the offspring
+    pop[:] = offspring
 
-            # Combine current bacterium and neighbors
-            selList = [current] + neighbors
-
-            # Select one parent
-            parent = toolbox.select(selList, 1)[0]
-
-            # Clone the selected parent
-            child = toolbox.clone(parent)
-
-            #Transduction
-            # Transduction
-            if random.random() < transProb:
-                donor = random.choice(neighbors)
-
-                toolbox.transduction(child, donor)
-
-                del child.fitness.values
-            # Apply mutation
-            if random.random() < mutProb:
-                toolbox.mutate(child)
-                del child.fitness.values
-
-            # Evaluate if fitness is invalid
-            if not child.fitness.valid:
-                child.fitness.values = toolbox.evaluate(child)
-
-            # Place child at the same position
-            new_grid[r][c] = child
-
-    # Replace old population
-    pop = new_grid
 
     # --------------------------------
     # STATISTICS
     # --------------------------------
 
-    fitnessValues = [
-        [bacterium.fitness.values[i] for row in pop for bacterium in row]
-        for i in range(4)
-    ]
+    fitnessValues = [[ind.fitness.values[i] for ind in pop]for i in range(4)]
 
     # Temperatur
     bestTempFitness.append(min(fitnessValues[0]))
@@ -213,9 +152,7 @@ for g in range(NGEN):
     bestSaltFitness.append(min(fitnessValues[3]))
     meanSaltFitness.append(sum(fitnessValues[3]) / len(fitnessValues[3]))
 end_time = time.time()
-
 calculation_time = end_time - start_time
-
 print(f"Calculation time: {calculation_time:.4f} seconds")
 sns.set_style("whitegrid")
 
