@@ -7,31 +7,32 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from deap import base, creator, tools
-print("Enter Environment: Enviroment1/Enviroment2/Enviroment3")
-Environment = input()
-if Environment == "Enviroment1":
-    with open("enviroment1.json", "r") as f:
-        enviroment = json.load(f)
-elif Environment == "Enviroment2":
-    with open("enviroment2.json", "r") as f:
-        enviroment = json.load(f)
-elif Environment == "Enviroment3":
-    with open("enviroment3.json", "r") as f:
-        enviroment = json.load(f)
-else:
-    print("No valid Environment selected")
+environments = {
+    "1": "enviroment1.json",
+    "2": "enviroment2.json",
+    "3": "enviroment3.json"
+}
+
+print("Select Environment (1, 2 or 3):")
+choice = input().strip()
+
+if choice not in environments:
+    raise ValueError("Invalid environment selected!")
+
+with open(environments[choice], "r") as f:
+    enviroment = json.load(f)
 temp_env = enviroment["temperature"]
 ph_Env = enviroment["ph"]
 optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 50
+NGEN = 10
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
-popSize = 1000
+popSize = 1000000
 
 mutProb = 0.5
 indpb = 0.01

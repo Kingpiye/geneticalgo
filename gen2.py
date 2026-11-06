@@ -193,23 +193,7 @@ def get_neighbors(grid, row, col):
 # 7. PARENT SELECTION
 # --------------------------------
 
-def select_parent(candidates):
-    contestants = random.sample(
-        candidates,
-        min(3, len(candidates))
-    )
 
-    winner = contestants[0]
-
-    for candidate in contestants[1:]:
-        if candidate.fitness.dominates(winner.fitness):
-            winner = candidate
-        elif not winner.fitness.dominates(candidate.fitness):
-            # Neither candidate dominates the other.
-            if random.random() < 0.5:
-                winner = candidate
-
-    return winner
 
 
 # --------------------------------
