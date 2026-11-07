@@ -27,7 +27,7 @@ optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 100
+NGEN = 10
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
@@ -50,11 +50,14 @@ meanNutFitness = []
 bestSaltFitness = []
 meanSaltFitness = []
 
-creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0, -1.0, -1.0 ))
+bestFitness = []
+meanFitness = []
+
+creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
 creator.create(
         "Individual",
         list,
-        fitness=creator.FitnessMulti
+        fitness=creator.FitnessMin
     )
 
 toolbox = base.Toolbox()
@@ -78,27 +81,23 @@ start_time = time.time()
 pop = toolbox.population()
 
 
-def evaluate(individual):
-    temp_fitness = abs(
-        (temp_env - sum(individual[0:100])) / 100
-    )
+def evaluate_details(individual):
+    temp_fitness = abs(((temp_env + 100) / 200) - (sum(individual[0:100]) / 100))
 
-    ph_fitness = abs(
-        (ph_Env - sum(individual[100:200])) / 100
-    )
+    ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
 
-    nut_fitness = abs(
-        sum(individual[200:300]) / 100
-        - optimal_nutrition_efficiency
-    )
+    nut_fitness = abs(optimal_nutrition_efficiency - (sum(individual[200:300]) / 100))
 
-    salt_fitness = abs(
-        sum(individual[300:400]) / 100
-        - salt_concentration
-    )
+    salt_fitness = abs(salt_concentration - (sum(individual[300:400]) / 100))
 
     return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
+
+def evaluate(individual):
+    details = evaluate_details(individual)
+    general_fitness = sum(details)
+
+    return (general_fitness,)
 
 toolbox.register("evaluate", evaluate)
 
@@ -130,34 +129,36 @@ for g in range(NGEN):
     # The population is entirely replaced by the offspring
     pop[:] = offspring
 
+    fitnessValues = [ind.fitness.values[0] for ind in pop]
 
-    # --------------------------------
-    # STATISTICS
-    # --------------------------------
+    bestFitness.append(min(fitnessValues))
+    meanFitness.append(sum(fitnessValues) / len(pop))
 
-    fitnessValues = [[ind.fitness.values[i] for ind in pop]for i in range(4)]
+    details = [evaluate_details(ind) for ind in pop]
 
-    # Temperatur
-    bestTempFitness.append(min(fitnessValues[0]))
-    meanTempFitness.append(sum(fitnessValues[0]) / len(fitnessValues[0]))
+    temp_values = [v[0] for v in details]
+    ph_values = [v[1] for v in details]
+    nut_values = [v[2] for v in details]
+    salt_values = [v[3] for v in details]
 
-    # pH-Wert
-    bestPhFitness.append(min(fitnessValues[1]))
-    meanPhFitness.append(sum(fitnessValues[1]) / len(fitnessValues[1]))
+    bestTempFitness.append(min(temp_values))
+    meanTempFitness.append(sum(temp_values) / len(pop))
 
-    # Nährstoffeffizienz
-    bestNutFitness.append(min(fitnessValues[2]))
-    meanNutFitness.append(sum(fitnessValues[2]) / len(fitnessValues[2]))
+    bestPhFitness.append(min(ph_values))
+    meanPhFitness.append(sum(ph_values) / len(pop))
 
-    # Salzkonzentration
-    bestSaltFitness.append(min(fitnessValues[3]))
-    meanSaltFitness.append(sum(fitnessValues[3]) / len(fitnessValues[3]))
+    bestNutFitness.append(min(nut_values))
+    meanNutFitness.append(sum(nut_values) / len(pop))
+
+    bestSaltFitness.append(min(salt_values))
+    meanSaltFitness.append(sum(salt_values) / len(pop))
+
 end_time = time.time()
 calculation_time = end_time - start_time
 print(f"Calculation time: {calculation_time:.4f} seconds")
 sns.set_style("whitegrid")
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+fig, axes = plt.subplots(2, 3, figsize=(15, 8))
 
 # Temperatur
 axes[0, 0].plot(bestTempFitness, label="Best Fitness")
@@ -179,6 +180,11 @@ axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
 axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
 axes[1, 1].set_title("Salt Fitness")
 
+axes[0, 2].plot(bestFitness, label="Best Fitness")
+axes[0, 2].plot(meanFitness, label="Average Fitness")
+axes[0, 2].set_title("General Fitness")
+
+axes[1, 2].set_visible(False)
 for ax in axes.flat:
     ax.set_xlabel("Generation")
     ax.set_ylabel("Fitness")

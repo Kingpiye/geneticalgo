@@ -82,24 +82,13 @@ pop = toolbox.population()
 toolbox.register("transduction", transduction)
 
 def evaluate(individual):
-    temp_fitness = abs(
-        (temp_env - sum(individual[0:100])) / 100
-    )
+    temp_fitness = abs(((temp_env + 100) / 200) - (sum(individual[0:100]) / 100))
 
-    ph_fitness = abs(
-        (ph_Env - sum(individual[100:200])) / 100
-    )
+    ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
 
-    nut_fitness = abs(
-        sum(individual[200:300]) / 100
-        - optimal_nutrition_efficiency
-    )
+    nut_fitness = abs(optimal_nutrition_efficiency - (sum(individual[200:300]) / 100))
 
-    salt_fitness = abs(
-        sum(individual[300:400]) / 100
-        - salt_concentration
-    )
-
+    salt_fitness = abs(salt_concentration - (sum(individual[300:400]) / 100))
     return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
 
