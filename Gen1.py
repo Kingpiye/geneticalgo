@@ -54,24 +54,12 @@ bestFitness = []
 meanFitness = []
 
 creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
-creator.create(
-        "Individual",
-        list,
-        fitness=creator.FitnessMin
-    )
+creator.create( "Individual", list, fitness=creator.FitnessMin)
 
 toolbox = base.Toolbox()
 
 toolbox.register("zeroOrOne", random.randint, 0, 1)
-toolbox.register(
-    "individual",
-    tools.initRepeat,
-    creator.Individual,
-    toolbox.zeroOrOne,
-    n=chromosome_length
-)
-
-
+toolbox.register("individual",tools.initRepeat,creator.Individual,toolbox.zeroOrOne,n=chromosome_length)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual, n=popSize)
 toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
 toolbox.register("mate", tools.cxTwoPoint)
@@ -83,20 +71,15 @@ pop = toolbox.population()
 
 def evaluate_details(individual):
     temp_fitness = abs(((temp_env + 100) / 200) - (sum(individual[0:100]) / 100))
-
     ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
-
     nut_fitness = abs(optimal_nutrition_efficiency - (sum(individual[200:300]) / 100))
-
     salt_fitness = abs(salt_concentration - (sum(individual[300:400]) / 100))
-
     return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
 
 def evaluate(individual):
     details = evaluate_details(individual)
     general_fitness = sum(details)
-
     return (general_fitness,)
 
 toolbox.register("evaluate", evaluate)
