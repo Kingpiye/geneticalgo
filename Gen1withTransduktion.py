@@ -115,10 +115,10 @@ for g in range(NGEN):
             toolbox.transduction(tran_recipient, donor)
             del tran_recipient.fitness.values
             offspring[offspring.index(recipient)] = tran_recipient
-        for mutant in offspring:
-            if random.random() < mutProb:
-                toolbox.mutate(mutant)
-                del mutant.fitness.values
+    for mutant in offspring:
+        if random.random() < mutProb:
+            toolbox.mutate(mutant)
+            del mutant.fitness.values
 
 
     invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
