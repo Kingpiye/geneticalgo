@@ -9,11 +9,11 @@ import seaborn as sns
 from deap import base, creator, tools
 
 
-NGEN = 10
+NGEN = 50
 RANDOM_SEED = 42
 
 chromosome_length = 400
-popSize = 1000000
+popSize = 100000
 
 mutProb = 0.5
 indpb = 0.01
@@ -31,18 +31,18 @@ CHUNKSIZE = 500
 # FITNESS-KLASSEN
 # --------------------------------
 
-if not hasattr(creator, "FitnessMulti"):
+if not hasattr(creator, "FitnessMin"):
     creator.create(
-        "FitnessMulti",
+        "FitnessMin",
         base.Fitness,
-        weights=(-1.0, -1.0, -1.0, -1.0)
+        weights=(-1.0,)
     )
 
 if not hasattr(creator, "Individual"):
     creator.create(
         "Individual",
         list,
-        fitness=creator.FitnessMulti
+        fitness=creator.FitnessMin
     )
 
 
@@ -77,24 +77,26 @@ def init_worker(environment):
 # FITNESS-FUNKTION
 # --------------------------------
 
-def evaluate(individual):
+def evaluate_details(individual):
 
     temp_fitness = abs(
-        temp_env - sum(individual[0:100]) / 100
+        (temp_env + 273) / 573
+        - sum(individual[0:100]) / 100
     )
 
     ph_fitness = abs(
-        ph_Env - sum(individual[100:200]) / 100
+        ph_Env / 14
+        - sum(individual[100:200]) / 100
     )
 
     nut_fitness = abs(
-        sum(individual[200:300]) / 100
-        - optimal_nutrition_efficiency
+        optimal_nutrition_efficiency
+        - sum(individual[200:300]) / 100
     )
 
     salt_fitness = abs(
-        sum(individual[300:400]) / 100
-        - salt_concentration
+        salt_concentration
+        - sum(individual[300:400]) / 100
     )
 
     return (
@@ -103,6 +105,13 @@ def evaluate(individual):
         nut_fitness,
         salt_fitness
     )
+
+
+def evaluate(individual):
+
+    details = evaluate_details(individual)
+    general_fitness = sum(details)
+    return (general_fitness,)
 
 
 # --------------------------------
@@ -181,6 +190,9 @@ def main():
 
     bestSaltFitness = []
     meanSaltFitness = []
+
+    bestFitness = []
+    meanFitness = []
 
     start_time = time.perf_counter()
 
@@ -281,32 +293,44 @@ def main():
             # --------------------------------
 
             fitnessValues = [
-                [ind.fitness.values[i] for ind in pop]
-                for i in range(4)
+                ind.fitness.values[0] for ind in pop
             ]
 
+            bestFitness.append(min(fitnessValues))
+            meanFitness.append(
+                sum(fitnessValues) / len(pop)
+            )
+
+            # Einzelne Abweichungen getrennt auswerten
+            details = [evaluate_details(ind) for ind in pop]
+
+            temp_values = [v[0] for v in details]
+            ph_values = [v[1] for v in details]
+            nut_values = [v[2] for v in details]
+            salt_values = [v[3] for v in details]
+
             # Temperatur
-            bestTempFitness.append(min(fitnessValues[0]))
+            bestTempFitness.append(min(temp_values))
             meanTempFitness.append(
-                sum(fitnessValues[0]) / len(fitnessValues[0])
+                sum(temp_values) / len(pop)
             )
 
             # pH-Wert
-            bestPhFitness.append(min(fitnessValues[1]))
+            bestPhFitness.append(min(ph_values))
             meanPhFitness.append(
-                sum(fitnessValues[1]) / len(fitnessValues[1])
+                sum(ph_values) / len(pop)
             )
 
             # Nährstoffeffizienz
-            bestNutFitness.append(min(fitnessValues[2]))
+            bestNutFitness.append(min(nut_values))
             meanNutFitness.append(
-                sum(fitnessValues[2]) / len(fitnessValues[2])
+                sum(nut_values) / len(pop)
             )
 
             # Salzkonzentration
-            bestSaltFitness.append(min(fitnessValues[3]))
+            bestSaltFitness.append(min(salt_values))
             meanSaltFitness.append(
-                sum(fitnessValues[3]) / len(fitnessValues[3])
+                sum(salt_values) / len(pop)
             )
 
     # --------------------------------
@@ -324,7 +348,7 @@ def main():
 
     sns.set_style("whitegrid")
 
-    fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
 
     # Temperatur
     axes[0, 0].plot(bestTempFitness, label="Best Fitness")
@@ -346,11 +370,20 @@ def main():
     axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
     axes[1, 1].set_title("Salt Fitness")
 
+    # Gesamtfitness
+    axes[0, 2].plot(bestFitness, label="Best Fitness")
+    axes[0, 2].plot(meanFitness, label="Average Fitness")
+    axes[0, 2].set_title("General Fitness")
+
+    # Sechstes Diagramm wird nicht benötigt
+    axes[1, 2].set_visible(False)
+
     for ax in axes.flat:
-        ax.set_xlabel("Generation")
-        ax.set_ylabel("Fitness")
-        ax.legend()
-        ax.grid(True)
+        if ax.get_visible():
+            ax.set_xlabel("Generation")
+            ax.set_ylabel("Fitness")
+            ax.legend()
+            ax.grid(True)
 
     plt.tight_layout()
     plt.show()

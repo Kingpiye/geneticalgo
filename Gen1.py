@@ -32,7 +32,7 @@ RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
-popSize = 1000
+popSize = 100000
 
 mutProb = 0.5
 indpb = 0.01
