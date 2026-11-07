@@ -108,18 +108,15 @@ for g in range(NGEN):
     offspring = toolbox.select(pop, len(pop))
     offspring = list(map(toolbox.clone, offspring))
     # Transduction
-    if random.random() < transProb:
-        donor = random.choice(offspring)
-        recipient_candidates = [
-            ind for ind in offspring
-            if ind is not donor
-        ]
-        if recipient_candidates:
-            recipient = random.choice(recipient_candidates)
-            tran_recipient = toolbox.clone(recipient)
-            toolbox.transduction(tran_recipient, donor)
-            del tran_recipient.fitness.values
-            offspring[offspring.index(recipient)] = tran_recipient
+    for child1, child2 in zip(offspring[::2], offspring[1::2]):
+        if random.random() < transProb:
+
+            if random.random() < 0.5:
+                recipient, donor = child1, child2
+            else:
+                recipient, donor = child2, child1
+            toolbox.transduction(recipient, donor)
+            del recipient.fitness.values
     for mutant in offspring:
         if random.random() < mutProb:
             toolbox.mutate(mutant)
@@ -167,7 +164,7 @@ calculation_time = end_time - start_time
 print(f"Calculation time: {calculation_time:.4f} seconds")
 sns.set_style("whitegrid")
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+fig, axes = plt.subplots(2, 3, figsize=(15, 8))
 
 # Temperatur
 axes[0, 0].plot(bestTempFitness, label="Best Fitness")
@@ -189,6 +186,11 @@ axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
 axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
 axes[1, 1].set_title("Salt Fitness")
 
+axes[0, 2].plot(bestFitness, label="Best Fitness")
+axes[0, 2].plot(meanFitness, label="Average Fitness")
+axes[0, 2].set_title("General Fitness")
+
+axes[1, 2].set_visible(False)
 for ax in axes.flat:
     ax.set_xlabel("Generation")
     ax.set_ylabel("Fitness")

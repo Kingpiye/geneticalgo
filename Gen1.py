@@ -27,12 +27,12 @@ optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 200
+NGEN = 100
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
-popSize = 100
+popSize = 5000
 
 mutProb = 0.5
 indpb = 0.01
