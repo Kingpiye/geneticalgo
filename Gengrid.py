@@ -27,7 +27,7 @@ optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 150
+NGEN = 1000
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
@@ -42,7 +42,7 @@ indpb = 0.01
 transProb = 0.01
 max_trans_laenge = 20
 repb = 0.2
-
+death_rate = 0.1
 bestTempFitness = []
 meanTempFitness = []
 
@@ -54,13 +54,16 @@ meanNutFitness = []
 
 bestSaltFitness = []
 meanSaltFitness = []
+
+bestFitness = []
+meanFitness = []
 popSize = []
 
-creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0, -1.0, -1.0 ))
+creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
 creator.create(
         "Individual",
         list,
-        fitness=creator.FitnessMulti
+        fitness=creator.FitnessMin
     )
 
 toolbox = base.Toolbox()
@@ -93,30 +96,36 @@ start_time = time.time()
 
 
 
+def evaluate_details(individual):
+    temp_fitness = abs(
+        (temp_env - sum(individual[0:100])) / 100
+    )
+
+    ph_fitness = abs(
+        (ph_Env - sum(individual[100:200])) / 100
+    )
+
+    nut_fitness = abs(
+        sum(individual[200:300]) / 100
+        - optimal_nutrition_efficiency
+    )
+
+    salt_fitness = abs(
+        sum(individual[300:400]) / 100
+        - salt_concentration
+    )
+
+    return temp_fitness, ph_fitness, nut_fitness, salt_fitness
+
+
 def evaluate(individual):
-        temp_fitness = abs(
-            (temp_env - sum(individual[0:100]))/ 100
-        )
+    details = evaluate_details(individual)
+    general_fitness = sum(details)
 
-        ph_fitness = abs(
-            (ph_Env - sum(individual[100:200])) / 100
-        )
-
-        nut_fitness = abs(
-            sum(individual[200:300]) / 100
-            - optimal_nutrition_efficiency
-        )
-
-        salt_fitness = abs(
-            sum(individual[300:400]) / 100
-            - salt_concentration
-        )
-
-        return temp_fitness, ph_fitness, nut_fitness, salt_fitness
+    return (general_fitness,)
 
 def collect_stats(grid):
 
-    # Get all bacteria from the 2D grid
     pop = [
         grid[r][c]
         for r in range(space_ROW)
@@ -127,28 +136,31 @@ def collect_stats(grid):
     if not pop:
         return
 
-    fitnessValues = [
-        [ind.fitness.values[i] for ind in pop]
-        for i in range(4)
-    ]
+    # Gesamtfitness
+    fitnessValues = [ind.fitness.values[0] for ind in pop]
 
-    # Temperature
-    bestTempFitness.append(min(fitnessValues[0]))
-    meanTempFitness.append(sum(fitnessValues[0]) / len(pop))
+    bestFitness.append(min(fitnessValues))
+    meanFitness.append(sum(fitnessValues) / len(pop))
 
-    # pH
-    bestPhFitness.append(min(fitnessValues[1]))
-    meanPhFitness.append(sum(fitnessValues[1]) / len(pop))
+    details = [evaluate_details(ind) for ind in pop]
 
-    # Nutrition
-    bestNutFitness.append(min(fitnessValues[2]))
-    meanNutFitness.append(sum(fitnessValues[2]) / len(pop))
+    temp_values = [v[0] for v in details]
+    ph_values = [v[1] for v in details]
+    nut_values = [v[2] for v in details]
+    salt_values = [v[3] for v in details]
 
-    # Salt
-    bestSaltFitness.append(min(fitnessValues[3]))
-    meanSaltFitness.append(sum(fitnessValues[3]) / len(pop))
+    bestTempFitness.append(min(temp_values))
+    meanTempFitness.append(sum(temp_values) / len(pop))
 
-    # Population size
+    bestPhFitness.append(min(ph_values))
+    meanPhFitness.append(sum(ph_values) / len(pop))
+
+    bestNutFitness.append(min(nut_values))
+    meanNutFitness.append(sum(nut_values) / len(pop))
+
+    bestSaltFitness.append(min(salt_values))
+    meanSaltFitness.append(sum(salt_values) / len(pop))
+
     popSize.append(len(pop))
 
 def get_neighbors(grid, row, col):
@@ -175,7 +187,17 @@ def get_neighbors(grid, row, col):
 
     return neighbors
 
-
+def death(grid, deathRate):
+    current_population=[
+        (r, c, grid[r][c])
+        for r in range(space_ROW)
+        for c in range(space_COL)
+        if grid[r][c] is not None
+    ]
+    dead_number = int(len(current_population) * deathRate)
+    current_population.sort(key =lambda x: sum(x[2].fitness.values), reverse=True)
+    for r, c, bacterium in current_population[:dead_number]:
+        grid[r][c] = None
 toolbox.register("evaluate", evaluate)
 
 pop = []
@@ -238,13 +260,13 @@ for g in range(NGEN):
             mutant.fitness.values = toolbox.evaluate(mutant)
             new_grid[r][c] = mutant
         #Transduktion
-        donor_candidates = get_neighbors(new_grid, r, c)
+        donor_candidates = get_neighbors(Grid, r, c)
         tran_recipient = toolbox.clone(bacterium)
 
         if donor_candidates and random.random() < transProb:
             donor = random.choice(donor_candidates)
             toolbox.transduction(tran_recipient, donor)
-            tran_recipient.fitness.values(tran_recipient)
+            tran_recipient.fitness.values = toolbox.evaluate(tran_recipient)
             new_grid[r][c] = tran_recipient
 
         # Find free neighboring cells
@@ -300,6 +322,8 @@ for g in range(NGEN):
     # Replace old grid
     Grid = new_grid
 
+    death(Grid, death_rate)
+
     # Collect statistics
     collect_stats(Grid)
 
@@ -344,6 +368,11 @@ axes[1, 0].set_title("Nutrition Fitness")
 axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
 axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
 axes[1, 1].set_title("Salt Fitness")
+
+# Gesamtfitness
+axes[0, 2].plot(bestFitness, label="Best Fitness")
+axes[0, 2].plot(meanFitness, label="Average Fitness")
+axes[0, 2].set_title("General Fitness")
 
 #Population
 axes[1, 2].plot(
