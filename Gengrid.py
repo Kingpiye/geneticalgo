@@ -27,7 +27,7 @@ optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 200
+NGEN = 50
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
@@ -58,6 +58,8 @@ meanSaltFitness = []
 bestFitness = []
 meanFitness = []
 popSize = []
+EvaluatedFitnessStat = []
+EvaluatedFitnessCount = 0
 
 creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
 creator.create(
@@ -147,6 +149,7 @@ def collect_stats(grid):
     meanSaltFitness.append(sum(salt_values) / len(pop))
 
     popSize.append(len(pop))
+    EvaluatedFitnessStat.append(EvaluatedFitnessCount)
 
 def get_neighbors(grid, row, col):
 
@@ -204,9 +207,8 @@ positions = random.sample(
 
 
 for individual, (row, col) in zip(pop, positions):
-
     individual.fitness.values = toolbox.evaluate(individual)
-
+    EvaluatedFitnessCount += 1
     Grid[row][col] = individual
 
 collect_stats(Grid)
@@ -244,6 +246,7 @@ for g in range(NGEN):
             mutant = toolbox.clone(bacterium)
             toolbox.mutate(mutant)
             mutant.fitness.values = toolbox.evaluate(mutant)
+            EvaluatedFitnessCount += 1
             new_grid[r][c] = mutant
         #Transduktion
         donor_candidates = get_neighbors(Grid, r, c)
@@ -253,6 +256,7 @@ for g in range(NGEN):
             donor = random.choice(donor_candidates)
             toolbox.transduction(tran_recipient, donor)
             tran_recipient.fitness.values = toolbox.evaluate(tran_recipient)
+            EvaluatedFitnessCount += 1
             new_grid[r][c] = tran_recipient
 
         # Find free neighboring cells
@@ -301,6 +305,7 @@ for g in range(NGEN):
 
             # Calculate new fitness
             child.fitness.values = toolbox.evaluate(child)
+            EvaluatedFitnessCount += 1
 
             # Place offspring in new grid
             new_grid[nr][nc] = child
@@ -356,17 +361,39 @@ axes[0, 2].plot(bestFitness, label="Best Fitness")
 axes[0, 2].plot(meanFitness, label="Average Fitness")
 axes[0, 2].set_title("General Fitness")
 
-#Population
-axes[1, 2].plot(
-    range(len(popSize)),
+# Population
+ax1 = axes[1, 2]
+
+ax1.plot(
     popSize,
-    label="Population Size"
+    label="Population Size",
+    color="blue"
 )
-axes[1, 2].set_title("Population Development")
-axes[1, 2].set_xlabel("Generation")
-axes[1, 2].set_ylabel("Number of Bacteria")
-axes[1, 2].legend()
-axes[1, 2].grid(True)
+
+ax1.set_xlabel("Generation")
+ax1.set_ylabel("Population Size", color="blue")
+ax1.tick_params(axis="y", labelcolor="blue")
+ax1.grid(True)
+
+# Cumulative Fitness Evaluations
+ax2 = ax1.twinx()
+
+ax2.plot(
+    EvaluatedFitnessStat,
+    label="Cumulative Fitness Evaluations",
+    color="red"
+)
+
+ax2.set_ylabel("Fitness Evaluations", color="red")
+ax2.tick_params(axis="y", labelcolor="red")
+
+# Title and legend
+ax1.set_title("Population and Fitness Evaluations")
+
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+
+ax1.legend(lines1 + lines2, labels1 + labels2)
 for ax in [
     axes[0, 0],
     axes[0, 1],
