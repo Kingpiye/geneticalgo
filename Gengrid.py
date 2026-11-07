@@ -213,6 +213,7 @@ collect_stats(Grid)
 for g in range(NGEN):
 
     print(f"Generation: {g + 1}")
+    time_generation_start = time.time()
 
     # New grid for synchronous updating
     new_grid = [
@@ -246,7 +247,7 @@ for g in range(NGEN):
             new_grid[r][c] = mutant
         #Transduktion
         donor_candidates = get_neighbors(Grid, r, c)
-        tran_recipient = toolbox.clone(bacterium)
+        tran_recipient = toolbox.clone(new_grid[r][c])
 
         if donor_candidates and random.random() < transProb:
             donor = random.choice(donor_candidates)
@@ -319,13 +320,9 @@ for g in range(NGEN):
         for c in range(space_COL)
         if Grid[r][c] is not None
     ]
-
-
-
-
-
-
-
+    time_generation_end = time.time()
+    generation_calculation_time = time_generation_end - time_generation_start
+    print(f"Generationtime: {generation_calculation_time}")
 
 end_time = time.time()
 calculation_time = end_time - start_time

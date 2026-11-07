@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b0aacee-ff4d-48a7-9253-0132113fa510" name="Changes" comment="2dSimulation">
-      <change afterPath="$PROJECT_DIR$/Gen1 with multiold.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gen1 with multi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gen1_with_multi_updated.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gen1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gen1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gengrid.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gengrid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gengridwithmulti.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gengridwithmulti.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,60 +40,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000046227024" />
-      <entry key="S30" value="1.0031267080645976" />
-      <entry key="S60" value="1.104999865784557" />
-      <entry key="M2" value="1.6369647449979878" />
-      <entry key="M5" value="2.9100373038246836" />
-      <entry key="M10" value="3.7697617104327814" />
-      <entry key="M15" value="4.209870104149532" />
-      <entry key="M30" value="5.55760571757631" />
-      <entry key="H1" value="9.951480900774907" />
-      <entry key="H2" value="26.675456552068542" />
-      <entry key="H4" value="85.7232002713432" />
-      <entry key="D1" value="491.697709824734" />
-      <entry key="W1" value="719.3091018375654" />
+      <entry key="MS500" value="1.00000780051064" />
+      <entry key="S2" value="1.052934078389723" />
+      <entry key="S5" value="1.3426635112642582" />
+      <entry key="S10" value="1.9092510665660747" />
+      <entry key="S30" value="4.682466191834596" />
+      <entry key="S60" value="7.523956658736156" />
+      <entry key="M2" value="10.073744622605766" />
+      <entry key="M5" value="12.224295076400306" />
+      <entry key="M10" value="13.231607149928273" />
+      <entry key="M15" value="13.886935836288467" />
+      <entry key="M30" value="15.627018505711865" />
+      <entry key="H1" value="19.728431816432632" />
+      <entry key="H2" value="34.44039826739637" />
+      <entry key="H4" value="89.14665937036465" />
+      <entry key="D1" value="495.06038970399516" />
+      <entry key="W1" value="731.065621141525" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="6.548378766973827E-192" />
-      <entry key="S30" value="2.6275261126742897E-64" />
-      <entry key="S60" value="2.2478560219611016E-32" />
-      <entry key="M2" value="2.1095681267650335E-16" />
-      <entry key="M5" value="8.124098539985577E-7" />
-      <entry key="M10" value="0.0012795863325349276" />
-      <entry key="M15" value="0.015126159912735065" />
-      <entry key="M30" value="0.1976075308787771" />
-      <entry key="H1" value="0.942037537995948" />
-      <entry key="H2" value="3.134374802381487" />
-      <entry key="H4" value="9.245633310531897" />
-      <entry key="D1" value="42.09069128478688" />
-      <entry key="W1" value="58.56340492721574" />
+      <entry key="MS500" value="6.194625432596263E-264" />
+      <entry key="S2" value="1.5776249384760873E-66" />
+      <entry key="S5" value="4.777508903852636E-27" />
+      <entry key="S10" value="6.911952621258803E-14" />
+      <entry key="S30" value="4.1039328950920165E-5" />
+      <entry key="S60" value="0.006406194576417434" />
+      <entry key="M2" value="0.08003870673878628" />
+      <entry key="M5" value="0.3641832999819119" />
+      <entry key="M10" value="0.6035309863872627" />
+      <entry key="M15" value="0.7159789795266285" />
+      <entry key="M30" value="0.9142675237955314" />
+      <entry key="H1" value="1.476775127793751" />
+      <entry key="H2" value="3.370029362078497" />
+      <entry key="H4" value="9.088445540131442" />
+      <entry key="D1" value="42.177184093609334" />
+      <entry key="W1" value="59.380326938612356" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9726549474122855" />
-      <entry key="MS500" value="0.9944701686732144" />
-      <entry key="S2" value="0.9986146661010289" />
-      <entry key="S5" value="0.9994456359721023" />
-      <entry key="S10" value="0.999722782654063" />
-      <entry key="S30" value="1.0027212371426413" />
-      <entry key="S60" value="1.1004837043406073" />
-      <entry key="M2" value="1.6249504472865675" />
-      <entry key="M5" value="2.896866989097557" />
-      <entry key="M10" value="3.7618016765570004" />
-      <entry key="M15" value="4.217970677041396" />
-      <entry key="M30" value="5.7504418960196455" />
-      <entry key="H1" value="10.88933747048943" />
-      <entry key="H2" value="29.805009727508793" />
-      <entry key="H4" value="94.96214173675067" />
-      <entry key="D1" value="533.7825582158931" />
-      <entry key="W1" value="777.8712951864824" />
+      <entry key="MS100" value="1.3693551480734761E-7" />
+      <entry key="MS500" value="0.04240157835144468" />
+      <entry key="S2" value="0.5064753774020114" />
+      <entry key="S5" value="1.0638080152346763" />
+      <entry key="S10" value="1.7257126082360088" />
+      <entry key="S30" value="4.550793787707886" />
+      <entry key="S60" value="7.429667244154306" />
+      <entry key="M2" value="10.087276643286364" />
+      <entry key="M5" value="12.55576049270567" />
+      <entry key="M10" value="13.817006669018848" />
+      <entry key="M15" value="14.589878396249992" />
+      <entry key="M30" value="16.533338556911193" />
+      <entry key="H1" value="21.19954439604219" />
+      <entry key="H2" value="37.80511140712264" />
+      <entry key="H4" value="98.2284287824367" />
+      <entry key="D1" value="537.2317223089166" />
+      <entry key="W1" value="790.4447209936076" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -188,7 +188,7 @@
       <workItem from="1793887535718" duration="5241000" />
       <workItem from="1793954718361" duration="19779000" />
       <workItem from="1793979207542" duration="9953000" />
-      <workItem from="1794038471388" duration="18417000" />
+      <workItem from="1794038471388" duration="20579000" />
     </task>
     <task id="LOCAL-00001" summary="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
       <option name="closed" value="true" />
@@ -350,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794059529934</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="2dSimulation">
+      <option name="closed" value="true" />
+      <created>1794060129272</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1794060129272</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,14 +381,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="2dSimulation" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/geneticalgo$Gen1.coverage" NAME="Gen1 Coverage Results" MODIFIED="1794059957608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geneticalgo$Gengrid.coverage" NAME="Gengrid Coverage Results" MODIFIED="1794048513906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$Gen1.coverage" NAME="Gen1 Coverage Results" MODIFIED="1794062850940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$Gengrid.coverage" NAME="Gengrid Coverage Results" MODIFIED="1794062626151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geneticalgo$Gen0_5.coverage" NAME="Gen0.5 Coverage Results" MODIFIED="1793979402125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geneticalgo$bacterial_evolution_updated.coverage" NAME="bacterial_evolution_updated Coverage Results" MODIFIED="1793703715407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geneticalgo$Gen1_with_multi.coverage" NAME="Gen1 with multi Coverage Results" MODIFIED="1793971917575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geneticalgo$gen2.coverage" NAME="gen2 Coverage Results" MODIFIED="1793984056851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geneticalgo$Gen1withTransduktion.coverage" NAME="Gen1withTransduktion Coverage Results" MODIFIED="1794059467847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geneticalgo$Gen1_with_multi_updated.coverage" NAME="Gen1_with_multi_updated Coverage Results" MODIFIED="1794059906158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geneticalgo$Gengridwithmulti.coverage" NAME="Gengridwithmulti Coverage Results" MODIFIED="1794049214428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$Gen1_with_multi_updated.coverage" NAME="Gen1_with_multi_updated Coverage Results" MODIFIED="1794060288117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geneticalgo$Gengridwithmulti.coverage" NAME="Gengridwithmulti Coverage Results" MODIFIED="1794062143593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

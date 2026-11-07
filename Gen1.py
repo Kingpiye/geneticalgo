@@ -27,12 +27,12 @@ optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
 
-NGEN = 50
+NGEN = 200
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
-popSize = 100000
+popSize = 100
 
 mutProb = 0.5
 indpb = 0.01
@@ -90,6 +90,7 @@ for ind in pop:
 
 for g in range(NGEN):
     print(f"Generation: {g}")
+    time_generation_start = time.time()
     offspring = toolbox.select(pop, len(pop))
     offspring = list(map(toolbox.clone, offspring))
     for child1, child2 in zip(offspring[::2], offspring[1::2]):
@@ -135,6 +136,9 @@ for g in range(NGEN):
 
     bestSaltFitness.append(min(salt_values))
     meanSaltFitness.append(sum(salt_values) / len(pop))
+    time_generation_end = time.time()
+    generation_calculation_time = time_generation_end - time_generation_start
+    print(f"Generationtime: {generation_calculation_time}")
 
 end_time = time.time()
 calculation_time = end_time - start_time

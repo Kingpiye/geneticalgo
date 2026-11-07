@@ -62,32 +62,12 @@ if not hasattr(creator, "Individual"):
 # FITNESSBERECHNUNG
 # ============================================================
 
-def evaluate_details(individual, env):
-
-    temp_fitness = abs(
-        (env["temperature"] - sum(individual[0:100])) / 100
-    )
-
-    ph_fitness = abs(
-        (env["ph"] - sum(individual[100:200])) / 100
-    )
-
-    nut_fitness = abs(
-        sum(individual[200:300]) / 100
-        - env["nutrition"]
-    )
-
-    salt_fitness = abs(
-        sum(individual[300:400]) / 100
-        - env["salt"]
-    )
-
-    return (
-        temp_fitness,
-        ph_fitness,
-        nut_fitness,
-        salt_fitness
-    )
+def evaluate_details(individual):
+    temp_fitness = abs(((temp_env + 273) / 573 ) - (sum(individual[0:100]) / 100))
+    ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
+    nut_fitness = abs(optimal_nutrition_efficiency - (sum(individual[200:300]) / 100))
+    salt_fitness = abs(salt_concentration - (sum(individual[300:400]) / 100))
+    return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
 
 def evaluate(individual, env):
