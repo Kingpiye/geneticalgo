@@ -51,7 +51,8 @@ meanSaltFitness = []
 
 bestFitness = []
 meanFitness = []
-
+EvaluatedFitnessStat = []
+EvaluatedFitnessCount = 0
 creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
 creator.create(
         "Individual",
@@ -102,7 +103,8 @@ toolbox.register("evaluate", evaluate)
 
 for ind in pop:
     ind.fitness.values = toolbox.evaluate(ind)
-
+    EvaluatedFitnessCount += 1
+EvaluatedFitnessStat.append(EvaluatedFitnessCount)
 for g in range(NGEN):
     print(f"Generation: {g}")
     offspring = toolbox.select(pop, len(pop))
@@ -127,7 +129,8 @@ for g in range(NGEN):
     fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
     for ind, fit in zip(invalid_ind, fitnesses):
         ind.fitness.values = fit
-
+    EvaluatedFitnessCount += len(invalid_ind)
+    EvaluatedFitnessStat.append(EvaluatedFitnessCount)
     # The population is entirely replaced by the offspring
     pop[:] = offspring
 
@@ -190,12 +193,14 @@ axes[0, 2].plot(bestFitness, label="Best Fitness")
 axes[0, 2].plot(meanFitness, label="Average Fitness")
 axes[0, 2].set_title("General Fitness")
 
-axes[1, 2].set_visible(False)
+axes[1, 2].plot(range(NGEN + 1),EvaluatedFitnessStat,label="Cumulative Fitness Evaluations")
+axes[1, 2].set_title("Cumulative Fitness Evaluations")
+
 for ax in axes.flat:
     ax.set_xlabel("Generation")
     ax.set_ylabel("Fitness")
     ax.legend()
     ax.grid(True)
-
+axes[1, 2].set_ylabel("Number of Fitness Evaluations")
 plt.tight_layout()
 plt.show()
