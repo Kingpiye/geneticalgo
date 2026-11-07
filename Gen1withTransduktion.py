@@ -82,7 +82,7 @@ pop = toolbox.population()
 toolbox.register("transduction", transduction)
 
 def evaluate(individual):
-    temp_fitness = abs(((temp_env + 100) / 200) - (sum(individual[0:100]) / 100))
+    temp_fitness = abs(((temp_env + 273) / 573) - (sum(individual[0:100]) / 100))
 
     ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
 

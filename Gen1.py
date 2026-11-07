@@ -70,7 +70,7 @@ pop = toolbox.population()
 
 
 def evaluate_details(individual):
-    temp_fitness = abs(((temp_env + 100) / 200) - (sum(individual[0:100]) / 100))
+    temp_fitness = abs(((temp_env + 273) / 573 ) - (sum(individual[0:100]) / 100))
     ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
     nut_fitness = abs(optimal_nutrition_efficiency - (sum(individual[200:300]) / 100))
     salt_fitness = abs(salt_concentration - (sum(individual[300:400]) / 100))
