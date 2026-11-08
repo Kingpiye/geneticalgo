@@ -21,7 +21,7 @@ if choice not in environments:
 
 with open(environments[choice], "r") as f:
     enviroment = json.load(f)
-temp_env = enviroment["temperature"]
+temp_env = enviroment["temperature"] # angegebene Werte dürfen maximal eine Nachkommastelle haben, Fitnesskalkulation kann ansonsten nicht statfinden
 ph_Env = enviroment["ph"]
 optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]

@@ -295,10 +295,6 @@ for g in range(NGEN):
 
             # Create offspring
             child = toolbox.clone(sel_ind)
-
-            # Transduction from another neighboring bacterium
-
-
             # Reproduktionmutation
             if random.random() < repr_mutProb:
                 toolbox.mutate(child)
