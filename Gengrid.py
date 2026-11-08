@@ -223,7 +223,6 @@ for g in range(NGEN):
         for _ in range(space_ROW)
     ]
 
-    # Collect all occupied positions
     occupied_positions = [
         (r, c)
         for r in range(space_ROW)
@@ -231,14 +230,12 @@ for g in range(NGEN):
         if Grid[r][c] is not None
     ]
 
-    # Randomize processing order
     random.shuffle(occupied_positions)
 
     for r, c in occupied_positions:
 
         bacterium = Grid[r][c]
 
-        # Preserve existing bacterium
         new_grid[r][c] = bacterium
 
         #Original mutation
@@ -279,21 +276,17 @@ for g in range(NGEN):
                 ):
                     empty_nei_cells.append((nr, nc))
 
-        # No free neighboring cells
         if not empty_nei_cells:
             continue
 
-        # Reproduction probability
         if random.random() < repb:
 
-            # Select free neighboring cell
+
             nr, nc = random.choice(empty_nei_cells)
 
-            # Local tournament selection
             candidate = [bacterium] + get_neighbors(Grid, r, c)
             sel_ind = toolbox.select(candidate, 1)[0]
 
-            # Create offspring
             child = toolbox.clone(sel_ind)
             # Reproduktionmutation
             if random.random() < repr_mutProb:
@@ -306,15 +299,14 @@ for g in range(NGEN):
             # Place offspring in new grid
             new_grid[nr][nc] = child
 
-    # Replace old grid
     Grid = new_grid
 
     death(Grid, death_rate)
 
-    # Collect statistics
+
     collect_stats(Grid)
 
-    # Collect all bacteria
+
     pop = [
         Grid[r][c]
         for r in range(space_ROW)
@@ -332,32 +324,26 @@ sns.set_style("whitegrid")
 
 fig, axes = plt.subplots(2, 3, figsize=(15, 8))
 
-# Temperatur
 axes[0, 0].plot(bestTempFitness, label="Best Fitness")
 axes[0, 0].plot(meanTempFitness, label="Average Fitness")
 axes[0, 0].set_title("Temperature Fitness")
 
-# pH-Wert
 axes[0, 1].plot(bestPhFitness, label="Best Fitness")
 axes[0, 1].plot(meanPhFitness, label="Average Fitness")
 axes[0, 1].set_title("pH Fitness")
 
-# Nährstoffe
 axes[1, 0].plot(bestNutFitness, label="Best Fitness")
 axes[1, 0].plot(meanNutFitness, label="Average Fitness")
 axes[1, 0].set_title("Nutrition Fitness")
 
-# Salz
 axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
 axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
 axes[1, 1].set_title("Salt Fitness")
 
-# Gesamtfitness
 axes[0, 2].plot(bestFitness, label="Best Fitness")
 axes[0, 2].plot(meanFitness, label="Average Fitness")
 axes[0, 2].set_title("General Fitness")
 
-# Population
 ax1 = axes[1, 2]
 
 ax1.plot(
