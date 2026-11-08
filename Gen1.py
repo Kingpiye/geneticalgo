@@ -26,34 +26,29 @@ ph_Env = enviroment["ph"]
 optimal_nutrition_efficiency = enviroment["nutrition"]
 salt_concentration = enviroment["salt"]
 
-
 NGEN = 200
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
 
 popSize = 5000
-
 mutProb = 0.5
 indpb = 0.01
 cxProb = 0.01
 
 bestTempFitness = []
 meanTempFitness = []
-
 bestPhFitness = []
 meanPhFitness = []
-
 bestNutFitness = []
 meanNutFitness = []
-
 bestSaltFitness = []
 meanSaltFitness = []
-
 bestFitness = []
 meanFitness = []
 EvaluatedFitnessStat = []
 EvaluatedFitnessCount = 0
+
 creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
 creator.create( "Individual", list, fitness=creator.FitnessMin)
 
@@ -69,7 +64,6 @@ start_time = time.time()
 
 pop = toolbox.population()
 
-
 def evaluate_details(individual):
     temp_fitness = abs(((temp_env + 273) / 573 ) - (sum(individual[0:100]) / 100))
     ph_fitness = abs((ph_Env / 14) - (sum(individual[100:200]) / 100))
@@ -77,14 +71,12 @@ def evaluate_details(individual):
     salt_fitness = abs(salt_concentration - (sum(individual[300:400]) / 100))
     return temp_fitness, ph_fitness, nut_fitness, salt_fitness
 
-
 def evaluate(individual):
     details = evaluate_details(individual)
     general_fitness = sum(details)
     return (general_fitness,)
 
 toolbox.register("evaluate", evaluate)
-
 
 for ind in pop:
     ind.fitness.values = toolbox.evaluate(ind)
@@ -107,7 +99,6 @@ for g in range(NGEN):
             toolbox.mutate(mutant)
             del mutant.fitness.values
 
-    # Evaluate the individuals with an invalid fitness
     invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
     fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
     for ind, fit in zip(invalid_ind, fitnesses):
@@ -115,8 +106,6 @@ for g in range(NGEN):
     EvaluatedFitnessCount += len(invalid_ind)
     EvaluatedFitnessStat.append(EvaluatedFitnessCount)
 
-
-    # The population is entirely replaced by the offspring
     pop[:] = offspring
 
     fitnessValues = [ind.fitness.values[0] for ind in pop]
@@ -125,7 +114,6 @@ for g in range(NGEN):
     meanFitness.append(sum(fitnessValues) / len(pop))
 
     details = [evaluate_details(ind) for ind in pop]
-
     temp_values = [v[0] for v in details]
     ph_values = [v[1] for v in details]
     nut_values = [v[2] for v in details]
@@ -133,13 +121,10 @@ for g in range(NGEN):
 
     bestTempFitness.append(min(temp_values))
     meanTempFitness.append(sum(temp_values) / len(pop))
-
     bestPhFitness.append(min(ph_values))
     meanPhFitness.append(sum(ph_values) / len(pop))
-
     bestNutFitness.append(min(nut_values))
     meanNutFitness.append(sum(nut_values) / len(pop))
-
     bestSaltFitness.append(min(salt_values))
     meanSaltFitness.append(sum(salt_values) / len(pop))
 
@@ -154,41 +139,28 @@ sns.set_style("whitegrid")
 
 fig, axes = plt.subplots(2, 3, figsize=(15, 8))
 
-# Temperatur
 axes[0, 0].plot(bestTempFitness, label="Best Fitness")
 axes[0, 0].plot(meanTempFitness, label="Average Fitness")
 axes[0, 0].set_title("Temperature Fitness")
-
-# pH-Wert
 axes[0, 1].plot(bestPhFitness, label="Best Fitness")
 axes[0, 1].plot(meanPhFitness, label="Average Fitness")
 axes[0, 1].set_title("pH Fitness")
-
-# Nährstoffe
 axes[1, 0].plot(bestNutFitness, label="Best Fitness")
 axes[1, 0].plot(meanNutFitness, label="Average Fitness")
 axes[1, 0].set_title("Nutrition Fitness")
-
-# Salz
 axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
 axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
 axes[1, 1].set_title("Salt Fitness")
-
 axes[0, 2].plot(bestFitness, label="Best Fitness")
 axes[0, 2].plot(meanFitness, label="Average Fitness")
 axes[0, 2].set_title("General Fitness")
-
 axes[1, 2].plot(range(NGEN + 1),EvaluatedFitnessStat,label="Cumulative Fitness Evaluations")
-
 axes[1, 2].set_title("Cumulative Fitness Evaluations")
-
 for ax in axes.flat:
     ax.set_xlabel("Generation")
     ax.set_ylabel("Fitness Error")
     ax.legend()
     ax.grid(True)
-
 axes[1, 2].set_ylabel("Number of Fitness Evaluations")
-
 plt.tight_layout()
 plt.show()
