@@ -30,7 +30,6 @@ NGEN = 200
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 chromosome_length = 400
-
 popSize = 5000
 mutProb = 0.5
 indpb = 0.01
