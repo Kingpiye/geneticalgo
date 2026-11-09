@@ -54,21 +54,13 @@ meanFitness = []
 EvaluatedFitnessStat = []
 EvaluatedFitnessCount = 0
 creator.create("FitnessMin", base.Fitness, weights=(-1.0, ))
-creator.create(
-        "Individual",
-        list,
-        fitness=creator.FitnessMin
+creator.create("Individual", list, fitness=creator.FitnessMin
     )
 
 toolbox = base.Toolbox()
 
 toolbox.register("zeroOrOne", random.randint, 0, 1)
-toolbox.register(
-    "individual",
-    tools.initRepeat,
-    creator.Individual,
-    toolbox.zeroOrOne,
-    n=chromosome_length
+toolbox.register("individual", tools.initRepeat,creator.Individual, toolbox.zeroOrOne, n=chromosome_length
 )
 
 def transduction(recipient, donor):
@@ -131,13 +123,8 @@ for g in range(NGEN):
         ind.fitness.values = fit
     EvaluatedFitnessCount += len(invalid_ind)
     EvaluatedFitnessStat.append(EvaluatedFitnessCount)
-    # The population is entirely replaced by the offspring
+
     pop[:] = offspring
-
-
-    # --------------------------------
-    # STATISTICS
-    # --------------------------------
 
     fitnessValues = [ind.fitness.values[0] for ind in pop]
 
@@ -169,22 +156,18 @@ sns.set_style("whitegrid")
 
 fig, axes = plt.subplots(2, 3, figsize=(15, 8))
 
-# Temperatur
 axes[0, 0].plot(bestTempFitness, label="Best Fitness")
 axes[0, 0].plot(meanTempFitness, label="Average Fitness")
 axes[0, 0].set_title("Temperature Fitness")
 
-# pH-Wert
 axes[0, 1].plot(bestPhFitness, label="Best Fitness")
 axes[0, 1].plot(meanPhFitness, label="Average Fitness")
 axes[0, 1].set_title("pH Fitness")
 
-# Nährstoffe
 axes[1, 0].plot(bestNutFitness, label="Best Fitness")
 axes[1, 0].plot(meanNutFitness, label="Average Fitness")
 axes[1, 0].set_title("Nutrition Fitness")
 
-# Salz
 axes[1, 1].plot(bestSaltFitness, label="Best Fitness")
 axes[1, 1].plot(meanSaltFitness, label="Average Fitness")
 axes[1, 1].set_title("Salt Fitness")

@@ -99,33 +99,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.Gen0.5.executor": "Run",
-    "Python.Gen0.5py.executor": "Run",
-    "Python.Gen1 with multi.executor": "Run",
-    "Python.Gen1.executor": "Run",
-    "Python.Gen1_with_multi_updated.executor": "Run",
-    "Python.Gen1withTransduktion.executor": "Run",
-    "Python.Gengrid.executor": "Run",
-    "Python.Gengridwithmulti.executor": "Run",
-    "Python.bacterial_evolution_updated.executor": "Run",
-    "Python.gen1withmulti.executor": "Run",
-    "Python.gen2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/PC/PycharmProjects/geneticalgo",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "nodejs_package_manager_path": "npm",
-    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Gen0.5.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gen0.5py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gen1 with multi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gen1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gen1_with_multi_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gen1withTransduktion.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gengrid.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Gengridwithmulti.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bacterial_evolution_updated.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gen1withmulti.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gen2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/PycharmProjects/geneticalgo&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PC\PycharmProjects\geneticalgo" />
@@ -184,7 +184,7 @@
       <workItem from="1793887535718" duration="5241000" />
       <workItem from="1793954718361" duration="19779000" />
       <workItem from="1793979207542" duration="9953000" />
-      <workItem from="1794038471388" duration="39745000" />
+      <workItem from="1794038471388" duration="40976000" />
     </task>
     <task id="LOCAL-00001" summary="first Iteration of algo missing functional oldfit &#10;missing generation display&#10;missing range change according to fit">
       <option name="closed" value="true" />
@@ -442,7 +442,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794170052937</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Final Formating Gen1">
+      <option name="closed" value="true" />
+      <created>1794180382602</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1794180382602</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
